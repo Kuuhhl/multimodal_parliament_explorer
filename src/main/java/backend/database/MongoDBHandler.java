@@ -27,22 +27,22 @@ public class MongoDBHandler {
     private final MongoClient mongoClient;
     private final MongoDatabase database;
     private final GridFSBucket gridFSBucket;
-    // Konfiguration für die Verbindung zur MongoDB
-    private final MongoDBConfig config;
 
     /**
      * Private constructor for singleton pattern
      *
      * @param shouldCreateConnectionPool Whether to create a connection pool
-     * @throws IOException falls die config.properties nicht gelesen werden kann.
+     * @throws IOException falls die connection URL nicht gesetzt ist.
      */
     private MongoDBHandler(boolean shouldCreateConnectionPool) throws IOException {
-        // Konfiguration laden
-        this.config = new MongoDBConfig();
+        if (System.getenv("MONGODB_URI") == null) {
+            throw new IOException("MONGODB_URI environment variable is not set.");
+        }
+
+        ConnectionString connString = new ConnectionString(System.getenv("MONGODB_URI"));
 
         if (shouldCreateConnectionPool) {
             // Create connection pool with optimized settings
-            ConnectionString connString = new ConnectionString(config.getURI());
 
             MongoClientSettings settings = MongoClientSettings.builder()
                     .applyConnectionString(connString)
@@ -56,14 +56,14 @@ public class MongoDBHandler {
                     .build();
 
             this.mongoClient = MongoClients.create(settings);
-            System.out.println("MongoDB connection pool initialized with database: " + config.getDatabase());
+            System.out.println("MongoDB connection pool initialized.");
         } else {
             // Standard client for backward compatibility
-            this.mongoClient = MongoClients.create(config.getURI());
+            this.mongoClient = MongoClients.create(connString.getConnectionString());
         }
 
         // Referenz auf die Datenbank holen
-        this.database = mongoClient.getDatabase(config.getDatabase());
+        this.database = mongoClient.getDatabase(connString.getDatabase() != null ? connString.getDatabase() : "data");
         this.gridFSBucket = GridFSBuckets.create(database, "fs");
     }
 
@@ -107,20 +107,6 @@ public class MongoDBHandler {
                 }
             }
         }
-    }
-
-    /**
-     * @return Connection string from config
-     */
-    public String getConnectionString() {
-        return config.getURI();
-    }
-
-    /**
-     * @return Database name from config
-     */
-    public String getDatabaseName() {
-        return config.getDatabase();
     }
 
     /**
