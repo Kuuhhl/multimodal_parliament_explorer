@@ -19,9 +19,6 @@
   <a href="https://documentation.multimodalparliamentexplorer.landmann.ph/">
     <img alt="JavaDoc öffnen" src="https://img.shields.io/badge/JavaDoc öffnen-F89820?style=for-the-badge&logo=openjdk&logoColor=white">
   </a>
-  <a href="https://multimodalparliamentexplorer.landmann.ph/">
-    <img src="https://img.shields.io/badge/Parliament Explorer Öffnen-00358a?style=for-the-badge&logo=google-chrome&logoColor=white">
-  </a>
   <a href="benutzerhandbuch.md">
     <img alt="Zum Benutzerhandbuch" src="https://img.shields.io/badge/Zum Benutzerhandbuch-000000?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAtOTYwIDk2MCA5NjAiIHdpZHRoPSIyNHB4IiBmaWxsPSIjZTNlM2UzIj48cGF0aCBkPSJNMjQwLTgwcS0zMyAwLTU2LjUtMjMuNVQxNjAtMTYwdi02NDBxMC0zMyAyMy41LTU2LjVUMjQwLTg4MGg0ODBxMzMgMCA1Ni41IDIzLjVUODAwLTgwMHY2NDBxMCAzMy0yMy41IDU2LjVUNzIwLTgwSDI0MFptMC04MGg0ODB2LTY0MGgtODB2MjgwbC0xMDAtNjAtMTAwIDYwdi0yODBIMjQwdjY0MFptMCAwdi02NDAgNjQwWm0yMDAtMzYwIDEwMC02MCAxMDAgNjAtMTAwLTYwLTEwMCA2MFoiLz48L3N2Zz4=&logoColor=white">
   </a>
